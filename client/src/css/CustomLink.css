@@ -1,0 +1,17 @@
+
+.custom-link {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 14px;
+    text-decoration: none;
+    color: #e7612e;
+}
+
+.custom-link--clicled {
+    color: white;
+    /*background-color:rgb(231, 97, 46, 0.2);*/
+    background: linear-gradient(90deg, rgba(231,97,46,1) 0%, rgba(231,97,46,0) 100%);
+    transition: background 0.5s ease-linear;
+    transition: color 0.6s ease-in;
+}
