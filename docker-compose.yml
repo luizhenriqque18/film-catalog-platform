@@ -4,10 +4,13 @@ services:
     container_name: mongodb
     image: mongo
     restart: always
-    environment:
-      - MONGO_INITDB_ROOT_USERNAME
-      - MONGO_INITDB_ROOT_PASSWORD
     volumes:
       - ./database/:/docker-entrypoint-initdb.d/:ro
+
+  server:
+    container_name: server
+    build: ./server
+    environment:
+      - ADDRESS_DB_URL
     ports:
-      - 27017:27017
+      - 5000:5000

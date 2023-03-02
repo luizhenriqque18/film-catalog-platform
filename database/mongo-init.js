@@ -1,7 +1,8 @@
 conn = new Mongo();
 db = conn.getDB("film-catalog");
-db.createCollection('filmes');
+db.createUser({user:"film",pwd:"film",roles:[{role:"readWrite", db:"film-catalog"}]});
 
+db.createCollection('filmes');
 db.filmes.insert([{
     "titulo": "Olhos Famintos 4 - Renascimento",
     "descricao": "",
