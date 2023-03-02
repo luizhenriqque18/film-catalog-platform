@@ -1,7 +1,8 @@
 import { Link, Outlet } from "react-router-dom";
+import '../css/Layout.css'
 
 const Layout = () => {
-    return (<div>
+    return (<div className="layout">
         <nav>
             <ul>
                 <li>
@@ -12,10 +13,16 @@ const Layout = () => {
                 </li>
             </ul>
         </nav>
-
-        <hr />
-        <Outlet />
-        <footer><h1>Footer</h1></footer>
+        <main>
+            <Outlet />
+        </main>
+        <footer className="footer">
+            <div>
+                <a href="#policy">Privacy Policy</a>
+                <a href="#term">Terms of Use</a>
+            </div>
+            <p>© <a href="https://github.com/luizhenriqque18" target="_blank" rel="noreferrer">luizhenriqque18</a>, 2023</p>
+        </footer>
     </div>
     );
 };
