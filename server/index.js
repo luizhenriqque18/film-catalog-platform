@@ -4,6 +4,8 @@ const mongoose = require('mongoose');
 const config = require('./config');
 const apiRoutes = require('./routes/api');
 
+global.__basedir = __dirname;
+
 const app = express();
 
 app.use(cors());
