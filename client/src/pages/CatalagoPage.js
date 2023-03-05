@@ -1,27 +1,64 @@
 import React, { useEffect, useState } from "react";
+import Card from "../components/Card";
+import Button from "../components/Button";
 import api from "../services/api";
-
+import '../css/CatalogoPage.css';
 
 const CatalogoPage = () => {
 
-    const [catalogo, setCatalogo] = useState([])
+    const [catalogo, setCatalogo] = useState({ data: [] })
+    const [pagination, setPagination] = useState({ page: 1, size: 10 })
 
     useEffect(() => {
-        const getCatalago = async () => {
-            var { data } = await api.get(`/filmes`);
-            setCatalogo(data.data);
+        getCatalago(pagination)
+    }, [pagination])
+
+    const getCatalago = async ({ page, size }) => {
+        var { data } = await api.get(`/filmes`, {
+            params: { page, size }
+        });
+        setCatalogo(data);
+    }
+
+
+    function handlePage(key = 'next') {
+        const { page } = pagination
+        const modification = {
+            previous: page - 1,
+            next: page + 1
         }
+        setPagination({ ...pagination, ...{ page: modification[key] } });
+    }
 
-        getCatalago();
-    }, [])
+    function enabledPrevious() {
+        return pagination.page <= 1
+    }
 
-    return (<div>
-        <h1>Últimos filmes adicionados</h1>
-        <ul>
+    function enabledNext() {
+        const { countPage } = catalogo;
+        return countPage <= pagination.page
+    }
+
+    return (<div className="catalago-page">
+        <header className="catalago-page__header">
+            <h1 className="catalago-page__header__title">Últimos filmes adicionados</h1>
+            <div className="catalago-page__nav">
+                <div className="catalago-page__nav__pagination">
+                    <Button disabled={enabledPrevious()}  onClick={() => handlePage('previous')}>Anterio</Button>
+                    <Button disabled={enabledNext()} onClick={() => handlePage()}>Próximo</Button>
+                </div>
+                <h3 className="catalago-page__nav__title">Próximos Filmes</h3>
+            </div>
+        </header>
+        <div className="grid">
             {
-                catalogo.length !== 0 ? catalogo.map(c => <li>{c.titulo}</li>) : <li>Carregando...</li>
+                catalogo.data.length !== 0 ? catalogo.data.map((c, index) => {
+                    return (
+                        <Card key={index} title={c.titulo} description={''} image={`/images/a(${index + 1}).jpg`} />
+                    )
+                }) : <li>Carregando...</li>
             }
-        </ul>
+        </div>
     </div>)
 }
 

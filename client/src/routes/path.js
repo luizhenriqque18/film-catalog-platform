@@ -5,11 +5,11 @@ export const path = [
     {
         link: "/catalogo",
         label: "Catalogo",
-        icon: <RiMovie2Line size={36} />
+        icon: <RiMovie2Line />
     },
     {
         link: "/cadastro",
         label: "Cadastro",
-        icon: <RiAddCircleLine size={36} />
+        icon: <RiAddCircleLine />
     }
 ]

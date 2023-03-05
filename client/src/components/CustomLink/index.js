@@ -6,15 +6,13 @@ const CustomLink = ({ children, to, ...props }) => {
     let match = useMatch({ path: resolved.pathname, end: true });
 
     return (
-        <div>
-            <Link
-                className={`custom-link ${match ? 'custom-link--clicled' : ''}`}
-                to={to}
-                {...props}
-            >
-                {children}
-            </Link>
-        </div>
+        <Link
+            className={`custom-link ${match ? 'custom-link--clicled' : ''}`}
+            to={to}
+            {...props}
+        >
+            {children}
+        </Link>
     );
 }
 

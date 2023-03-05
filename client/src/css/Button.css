@@ -1,0 +1,42 @@
+.button {
+  border-radius: 0.4rem;
+  background-color: var(--primary);
+  color: #fff;
+  font-weight: 500;
+  font-size: 0.875rem;
+  text-transform: uppercase;
+  padding: 0.375rem 0.75rem;
+  cursor: pointer;
+  letter-spacing: 0.02857em;
+}
+
+.button--outline {
+  background-color: transparent;
+  border-color: #676775;
+  color: #676775;
+}
+
+.button--primary {
+  background-color: #03052e;
+}
+
+.button--outline-primary {
+  background-color: transparent;
+  border-color: #e7612e;
+  color: #e7612e;
+}
+
+.button--fab-primary {
+  background-color: var(--text-color);
+  border-color: var(--background-color);
+  color: var(--background-color);
+  cursor: pointer;
+}
+
+.button--disabled {
+  color: #00000042;
+  box-shadow: none;
+  background-color: #dbd4d473;
+  pointer-events: none;
+  cursor: default;
+}
