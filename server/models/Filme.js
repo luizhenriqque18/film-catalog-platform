@@ -10,7 +10,7 @@ const filmeSchema = new mongoose.Schema({
         required: true,
     },
     imagem: {
-        type: String,
+        type: Object,
         required: true,
     },
     dataLancamento: {

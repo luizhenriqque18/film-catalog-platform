@@ -1,0 +1,23 @@
+.catalago-page {
+}
+
+.catalago-page__header {
+  display: flex;
+  flex-direction: column;
+  align-self: flex-start;
+  padding: 2rem;
+}
+
+.catalago-page__nav {
+  display: flex;
+  flex-direction: column;
+}
+.catalago-page__nav__pagination {
+  align-self: flex-end;
+}
+
+.grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}

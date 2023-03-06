@@ -1,3 +1,4 @@
+const fs = require("fs");
 const Filme = require('../models/Filme');
 
 exports.listarFilmes = async (req, res) => {
@@ -37,9 +38,21 @@ exports.buscarFilmePorId = async (req, res) => {
     }
 };
 
-exports.criarFilme = async (req, res) => {
+exports.buscarCapaFilmePorPath = async (req, res) => {
     try {
-        const filme = new Filme(req.body);
+        const filme = await Filme.findById(req.params.id);
+        res.status(200).sendFile(filme.imagem.filename, { root: 'public/images' });
+    } catch (error) {
+        res.status(500).json({ error: 'Erro ao buscar filme.' });
+    }
+};
+
+exports.criarFilme = async (req, res) => {
+    const {filename} = req.file;
+    const body = formatJsonStringForJSON(req.body);
+    try {
+        const filme = new Filme(body);
+        filme.imagem = {filename}
         await filme.save();
         res.status(201).json(filme);
     } catch (error) {
@@ -57,11 +70,17 @@ exports.atualizarFilme = async (req, res) => {
 };
 
 exports.removerFilme = async (req, res) => {
+    const directoryPath = __basedir + "/public/images/";
+
     try {
         const filme = await Filme.findByIdAndDelete(req.params.id);
-        res.status(200).json(filme);
+        
+        fs.unlinkSync(directoryPath + filme.imagem.filename);
+
+        res.status(200).json({message: 'Registro deletado com Sucesso!'});
     } catch (error) {
-        res.status(500).json({ error: 'Erro ao remover filme.' });
+        console.log(error);
+        res.status(500).json({ error: 'Erro ao remover filme ou imaga da capa' });
     }
 };
 
@@ -70,4 +89,9 @@ const convertObject = (sort = '') => {
     const result = {};
     result[key] = value;
     return result;
+}
+
+const formatJsonStringForJSON = (data) => {
+    var result = JSON.parse(data.jsonString);
+    return result
 }
