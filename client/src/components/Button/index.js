@@ -5,7 +5,7 @@ import '../../css/Button.css';
 
 const Button = (props) => {
 
-    const { children, outline, primary, fab, className, onClick, disabled } = props;
+    const { children, outline, primary, fab, className, onClick, disabled, type } = props;
 
     const classes = classNames('button', className, {
         'button--outline': outline && !primary,
@@ -16,7 +16,7 @@ const Button = (props) => {
     });
 
 
-    return <button disabled={disabled} className={classes} onClick={onClick}>{children}</button>
+    return <button type={type} disabled={disabled} className={classes} onClick={onClick}>{children}</button>
 }
 
 export default Button;

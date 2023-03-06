@@ -1,0 +1,20 @@
+.cadastro-page {
+  height: 100%;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  margin: 50px auto;
+  width: 50%;
+}
+
+.form__label {
+  margin-bottom: 10px;
+}
+
+.form__input {
+  margin-bottom: 20px;
+  padding: 10px;
+  border-radius: 10px;
+}
