@@ -20,6 +20,9 @@ const CatalogoPage = () => {
         setCatalogo(data);
     }
 
+    const getCapaFilme = (id) => {
+        return `${api.getUri()}/filmes/${id}/capa`;
+    }
 
     function handlePage(key = 'next') {
         const { page } = pagination
@@ -44,7 +47,7 @@ const CatalogoPage = () => {
             <h1 className="catalago-page__header__title">Últimos filmes adicionados</h1>
             <div className="catalago-page__nav">
                 <div className="catalago-page__nav__pagination">
-                    <Button disabled={enabledPrevious()}  onClick={() => handlePage('previous')}>Anterio</Button>
+                    <Button disabled={enabledPrevious()} onClick={() => handlePage('previous')}>Anterio</Button>
                     <Button disabled={enabledNext()} onClick={() => handlePage()}>Próximo</Button>
                 </div>
                 <h3 className="catalago-page__nav__title">Próximos Filmes</h3>
@@ -54,7 +57,7 @@ const CatalogoPage = () => {
             {
                 catalogo.data.length !== 0 ? catalogo.data.map((c, index) => {
                     return (
-                        <Card key={index} title={c.titulo} description={''} image={`/images/a(${index + 1}).jpg`} />
+                        <Card key={c._id} title={c.titulo} description={''} image={getCapaFilme(c._id)} />
                     )
                 }) : <li>Carregando...</li>
             }

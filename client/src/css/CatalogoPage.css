@@ -17,8 +17,7 @@
 }
 
 .grid {
-  max-width: 1624px;
-  margin: 60px auto;
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
 }
